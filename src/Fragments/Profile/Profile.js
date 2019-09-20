@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-const Queue = () => {
+
+const Profile = () => {
   return (
     <View style={{backgroundColor: 'blue'}}>
-      <Text>Queue</Text>
+      <Text>Profile</Text>
     </View>
   );
 };
 
-export default Queue;
+export default Profile;

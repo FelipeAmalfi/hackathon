@@ -7,6 +7,9 @@ import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom
 import Splash from '../Activities/Splash/Splash';
 import MainContainer from '../Activities/Main/Main';
 
+import Profile from '../Fragments/Profile/Profile';
+import Queue from '../Fragments/Queue/Queue';
+
 export const RouteType = {
   MainNavigation: 1,
   MainFragments: 2,
@@ -61,20 +64,18 @@ function useNavigation(type) {
   };
 
   const getMainFragments = () => {
-    return createMaterialBottomTabNavigator(
+    const bottomNavigation = createMaterialBottomTabNavigator(
       {
-        Album: {screen: Album},
-        Library: {screen: Library},
-        History: {screen: History},
-        Cart: {screen: Cart},
+        Profile: {screen: Profile},
+        Queue: {screen: Queue},
       },
       {
-        initialRouteName: 'Album',
+        initialRouteName: 'Queue',
         activeColor: '#f0edf6',
         inactiveColor: '#3e2465',
-        barStyle: {backgroundColor: '#694fad'},
       },
     );
+    return createAppContainer(bottomNavigation);
   };
 
   switch (type) {

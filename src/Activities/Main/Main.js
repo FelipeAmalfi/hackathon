@@ -1,10 +1,18 @@
 import React from 'react';
-import useNavigation, {RouteType} from '../../Hooks/useNavigation';
+import Profile from '../../Fragments/Profile/Profile';
+import Queue from '../../Fragments/Queue/Queue';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-const Main = () => {
-  const Fragments = useNavigation(RouteType.MainFragments);
+const Main = props => {
+  const {navigation} = props;
+  const Tab = createMaterialBottomTabNavigator();
 
-  return <Fragments />;
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Queue" component={Queue} />
+    </Tab.Navigator>
+  );
 };
 
 export default Main;
