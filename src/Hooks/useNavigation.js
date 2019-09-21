@@ -3,105 +3,119 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {fromBottom, fadeIn, fromLeft} from 'react-navigation-transitions';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {View} from 'react-native';
 
 import Splash from '../Activities/Splash/Splash';
 
 import Profile from '../Fragments/Profile/Profile';
-import Queue from '../Fragments/Queue/Queue';
 import MainContainer from '../Activities/MainContainer';
+import NeedHelp from '../Fragments/Queue/NeedHelp';
 
 export const RouteType = {
   MainNavigation: 1,
   MainFragments: 2,
 };
 
-function useNavigation(type) {
-  const getAppContainer = () => {
-    const ResultsNavigator = createMaterialBottomTabNavigator(
-      {
-        Fila: {
-          screen: Queue,
-          navigationOptions: {
-            tabBarIcon: ({tintColor, focused}) => (
-              <Icon name="list" size={20} color={tintColor} />
-            ),
-          },
-        },
-        Perfil: {
-          screen: Profile,
-          navigationOptions: {
-            tabBarIcon: ({tintColor, focused}) => (
-              <Icon name="user" size={20} color={tintColor} />
-            ),
-          },
+const getTabs = () => {
+  const TabNavigator = createMaterialBottomTabNavigator(
+    {
+      Profile: {
+        screen: Profile,
+        navigationOptions: {
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({tintColor}) => (
+            <View>
+              <Icon
+                style={[{color: tintColor}]}
+                size={25}
+                name={'ios-person'}
+              />
+            </View>
+          ),
         },
       },
-      {
-        tabBarPosition: 'bottom',
-        header: null,
-        barStyle: {
-          backgroundColor: '#347deb',
+      NeedHelp: {
+        screen: NeedHelp,
+        navigationOptions: {
+          tabBarLabel: 'Need Help?',
+          tabBarIcon: ({tintColor}) => (
+            <View>
+              <Icon style={[{color: tintColor}]} size={25} name={'ios-list'} />
+            </View>
+          ),
+          activeColor: '#fff',
+          inactiveColor: '#232375',
+          barStyle: {backgroundColor: '#3232a8'},
         },
       },
-    );
+    },
+    {
+      header: 'none',
+      initialRouteName: 'NeedHelp',
+      activeColor: '#fff',
+      inactiveColor: '#031e80',
+      barStyle: {backgroundColor: '#046bcc'},
+    },
+  );
+  return createAppContainer(TabNavigator);
+};
 
-    const AppStack = createStackNavigator(
-      {
-        Main: {
-          screen: MainContainer,
-        },
-        Results: {
-          screen: ResultsNavigator,
-        },
+const getAppContainer = () => {
+  const AppStack = createStackNavigator(
+    {
+      Main: {
+        screen: MainContainer,
       },
-      {
-        initialRouteName: 'Main',
-
-        transitionConfig: nav => handleCustomTransition(nav),
-      },
-    );
-
-    const scene = {
-      Splash: {screen: Splash},
-      App: AppStack,
-    };
-
-    let AppNavigator = createSwitchNavigator(scene, {
-      initialRouteName: 'Splash',
+    },
+    {
+      initialRouteName: 'Main',
 
       transitionConfig: nav => handleCustomTransition(nav),
-    });
+    },
+  );
 
-    const handleCustomTransition = ({scenes}) => {
-      const prevScene = scenes[scenes.length - 2];
-      const nextScene = scenes[scenes.length - 1];
-      // Custom transitions go there
-      if (
-        prevScene &&
-        prevScene.route.routeName === 'Splash' &&
-        nextScene.route.routeName === 'Login'
-      ) {
-        return fadeIn(750);
-      } else if (
-        prevScene &&
-        prevScene.route.routeName === 'Splash' &&
-        nextScene.route.routeName === 'App'
-      ) {
-        return fromBottom(750);
-      } else {
-        return fromLeft(750);
-      }
-    };
-
-    return createAppContainer(AppNavigator);
+  const scene = {
+    Splash: {screen: Splash},
+    App: AppStack,
   };
 
+  let AppNavigator = createSwitchNavigator(scene, {
+    initialRouteName: 'Splash',
+
+    transitionConfig: nav => handleCustomTransition(nav),
+  });
+
+  const handleCustomTransition = ({scenes}) => {
+    const prevScene = scenes[scenes.length - 2];
+    const nextScene = scenes[scenes.length - 1];
+    // Custom transitions go there
+    if (
+      prevScene &&
+      prevScene.route.routeName === 'Splash' &&
+      nextScene.route.routeName === 'Login'
+    ) {
+      return fadeIn(750);
+    } else if (
+      prevScene &&
+      prevScene.route.routeName === 'Splash' &&
+      nextScene.route.routeName === 'App'
+    ) {
+      return fromBottom(750);
+    } else {
+      return fromLeft(750);
+    }
+  };
+
+  return createAppContainer(AppNavigator);
+};
+
+function useNavigation(type) {
   switch (type) {
     case RouteType.MainNavigation:
       return getAppContainer();
     case RouteType.MainFragments:
-      return getMainFragments();
+      return getTabs();
     default:
       return AppContainer;
   }

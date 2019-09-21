@@ -18,27 +18,11 @@ const Profile = props => {
     uri: 'https://ak8.picdn.net/shutterstock/videos/31218658/thumb/1.jpg',
   };
 
-  const facebookIcon = {
-    uri:
-      'https://icons-for-free.com/iconfiles/png/512/facebook+hexagon+high+quality+media+social+social+media-1320192603167451997.png',
-  };
+  const facebookIcon = require('../../images/fbLogo.png');
+  const twitterIcon = require('../../images/twitterLogo.png');
+  const linkedinIcon = require('../../images/linkedinLogo.png');
+  const instagramIcon = require('../../images/instagramLogo.png');
 
-  const twitterIcon = {
-    uri:
-      'https://icons-for-free.com/iconfiles/png/512/hexagon+high+quality+media+social+social+media+twitter+icon-1320192606525175917.png',
-  };
-
-  const linkedinIcon = {
-    uri:
-      'https://cdn4.iconfinder.com/data/icons/miu-hexagon-shadow-social/60/linkedin-hexagon-shadow-social-media-512.png',
-  };
-
-  const whatsappIcon = {
-    uri:
-      'https://cdn4.iconfinder.com/data/icons/miu-hexagon-shadow-social/60/whatsapp-hexagon-shadow-social-media-512.png',
-  };
-
-  console.log(styles.infoView);
   return (
     <ImageBackground
       source={photoCover}
@@ -48,14 +32,14 @@ const Profile = props => {
       <Image source={photoLink} style={styles.imageContainer} />
       <Text style={styles.name}>Felipe Amalfi Lima</Text>
       <Text style={styles.email}>Call do Baron</Text>
-      <View style={styles.infoView}>
+      <View backgroundColor={'rgba(240,242,245,0.6)'} style={styles.infoView}>
         <Text style={styles.profession}>Mobile Engineer at BWG</Text>
         <Text style={styles.email}>felip.amalf@gmail.com</Text>
         <View style={styles.socialNetworkContainer}>
           <Image source={facebookIcon} style={styles.snIcon} />
           <Image source={twitterIcon} style={styles.snIcon} />
           <Image source={linkedinIcon} style={styles.snIcon} />
-          <Image source={whatsappIcon} style={styles.snIcon} />
+          <Image source={instagramIcon} style={styles.snIcon} />
         </View>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Ver membros do time</Text>
@@ -76,8 +60,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    backgroundColor: '#f0f2f5',
-    opacity: 0.6,
     height: '50%',
   },
   imageContainer: {
@@ -104,6 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
+    opacity: 1,
   },
   title: {
     marginTop: 8,
@@ -121,6 +104,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginRight: 8,
+    opacity: 1,
   },
   button: {
     marginTop: 40,
