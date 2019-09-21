@@ -955,13 +955,6 @@
     shortid "^2.2.14"
     use-subscription "^1.0.0"
 
-"@react-navigation/material-bottom-tabs@^5.0.0-alpha.8":
-  version "5.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-5.0.0-alpha.8.tgz#25097cc095c9ae47635a54b2bb619c05865998b8"
-  integrity sha512-y8QvMDPFQ6xeJgP/j+VGDoivIvEKY1kIOYsd7CRw10HEwm4wClWidf0bWGQrHAbqH37S0lN67NLyddkY6/6oFQ==
-  dependencies:
-    "@react-navigation/routers" "^5.0.0-alpha.7"
-
 "@react-navigation/native@^3.6.2":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-3.6.2.tgz#3634697b6350cc5189657ae4551f2d52b57fbbf0"
@@ -970,13 +963,6 @@
     hoist-non-react-statics "^3.0.1"
     react-native-safe-area-view "^0.14.1"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
-
-"@react-navigation/routers@^5.0.0-alpha.7":
-  version "5.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/@react-navigation/routers/-/routers-5.0.0-alpha.7.tgz#7cbe052c270da8922d6f9dc541b96b64d6849fc0"
-  integrity sha512-AMTYj+9c/4846yl1QxJ8GvojqmL17C5VVI1yDonb5YYgV+XaWcMFk5luour8S8WnYtBn6pGvLeRH9AurUYSMmA==
-  dependencies:
-    shortid "^2.2.14"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
@@ -5357,7 +5343,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5455,6 +5441,13 @@ react-native-gesture-handler@^1.4.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-material-bottom-navigation@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-material-bottom-navigation/-/react-native-material-bottom-navigation-1.0.4.tgz#c9c9bf4a2f8d260a50703a39e01f600cc6cf66d6"
+  integrity sha512-g/2uaELl8Nhol5AVkFDUT6p4/nfLmTSlipjMrnw2kKBf1NBJuEZ2h/B7E4gg9KtryWPUjYc5Nixd9IwwNH2bLA==
+  dependencies:
+    prop-types "^15.6.1"
 
 react-native-paper@^2.16.0:
   version "2.16.0"

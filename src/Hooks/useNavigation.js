@@ -3,12 +3,13 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {fromBottom, fadeIn, fromLeft} from 'react-navigation-transitions';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Splash from '../Activities/Splash/Splash';
-import MainContainer from '../Activities/Main/Main';
 
 import Profile from '../Fragments/Profile/Profile';
 import Queue from '../Fragments/Queue/Queue';
+import MainContainer from '../Activities/MainContainer';
 
 export const RouteType = {
   MainNavigation: 1,
@@ -17,14 +18,46 @@ export const RouteType = {
 
 function useNavigation(type) {
   const getAppContainer = () => {
+    const ResultsNavigator = createMaterialBottomTabNavigator(
+      {
+        Fila: {
+          screen: Queue,
+          navigationOptions: {
+            tabBarIcon: ({tintColor, focused}) => (
+              <Icon name="list" size={20} color={tintColor} />
+            ),
+          },
+        },
+        Perfil: {
+          screen: Profile,
+          navigationOptions: {
+            tabBarIcon: ({tintColor, focused}) => (
+              <Icon name="user" size={20} color={tintColor} />
+            ),
+          },
+        },
+      },
+      {
+        tabBarPosition: 'bottom',
+        header: null,
+        barStyle: {
+          backgroundColor: '#347deb',
+        },
+      },
+    );
+
     const AppStack = createStackNavigator(
       {
         Main: {
           screen: MainContainer,
         },
+        Results: {
+          screen: ResultsNavigator,
+        },
       },
       {
         initialRouteName: 'Main',
+
         transitionConfig: nav => handleCustomTransition(nav),
       },
     );
@@ -36,6 +69,7 @@ function useNavigation(type) {
 
     let AppNavigator = createSwitchNavigator(scene, {
       initialRouteName: 'Splash',
+
       transitionConfig: nav => handleCustomTransition(nav),
     });
 
@@ -61,21 +95,6 @@ function useNavigation(type) {
     };
 
     return createAppContainer(AppNavigator);
-  };
-
-  const getMainFragments = () => {
-    const bottomNavigation = createMaterialBottomTabNavigator(
-      {
-        Profile: {screen: Profile},
-        Queue: {screen: Queue},
-      },
-      {
-        initialRouteName: 'Queue',
-        activeColor: '#f0edf6',
-        inactiveColor: '#3e2465',
-      },
-    );
-    return createAppContainer(bottomNavigation);
   };
 
   switch (type) {

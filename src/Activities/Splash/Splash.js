@@ -6,7 +6,7 @@ const Splash = props => {
 
   useEffect(() => {
     navigation.navigate('Main');
-  }, []);
+  }, [navigation]);
 
   return (
     <View>
