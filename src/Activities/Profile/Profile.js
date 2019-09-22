@@ -13,7 +13,7 @@ const Profile = props => {
   const {navigation} = props;
   const login = useSelector(state => state.login);
   const {userInfo} = login;
-  console.log(login);
+  const isMember = userInfo.type === 'Member';
 
   const photoCover = {
     uri: 'https://ak8.picdn.net/shutterstock/videos/31218658/thumb/1.jpg',
@@ -32,10 +32,14 @@ const Profile = props => {
       style={styles.container}>
       <Image source={{uri: userInfo.photo}} style={styles.imageContainer} />
       <Text style={styles.name}>{userInfo.name}</Text>
-      <Text style={styles.email}>{userInfo.team.name}</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('ListSwip')}>
-        <Text style={styles.memberButton}>Ver membros</Text>
-      </TouchableOpacity>
+      <Text style={styles.email}>
+        {isMember ? userInfo.team.name : userInfo.area.name}
+      </Text>
+      {isMember && (
+        <TouchableOpacity onPress={() => navigation.navigate('ListSwip')}>
+          <Text style={styles.memberButton}>Ver membros</Text>
+        </TouchableOpacity>
+      )}
       <View backgroundColor={'rgba(240,242,245,0.6)'} style={styles.infoView}>
         <Text style={styles.profession}>{userInfo.position}</Text>
         <Text style={styles.email}>{userInfo.login}</Text>
@@ -47,8 +51,14 @@ const Profile = props => {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Help')}>
-          <Text style={styles.buttonText}>Preciso de um mentor</Text>
+          onPress={() =>
+            isMember
+              ? navigation.navigate('Help')
+              : navigation.navigate('WaitList')
+          }>
+          <Text style={styles.buttonText}>
+            {isMember ? 'I need a mentor' : 'Check Queue'}
+          </Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

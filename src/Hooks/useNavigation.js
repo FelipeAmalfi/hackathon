@@ -8,10 +8,10 @@ import {View} from 'react-native';
 
 import Splash from '../Activities/Splash/Splash';
 
-import Profile from '../Fragments/Profile/Profile';
-import MainContainer from '../Activities/MainContainer';
+import Profile from '../Activities/Profile/Profile';
 import Login from '../Activities/Login/Login';
-import NeedHelp from '../Fragments/Queue/NeedHelp';
+import NeedHelp from '../Activities/Queue/CallHelp';
+import WaitList from '../Activities/Queue/WaitList';
 import Swipeable from '../components/Swipeable';
 
 export const RouteType = {
@@ -40,7 +40,7 @@ const getTabs = () => {
       NeedHelp: {
         screen: NeedHelp,
         navigationOptions: {
-          tabBarLabel: 'Need Help?',
+          tabBarLabel: 'Call Mentor',
           tabBarIcon: ({tintColor}) => (
             <View>
               <Icon style={[{color: tintColor}]} size={25} name={'ios-list'} />
@@ -66,14 +66,14 @@ const getTabs = () => {
 const getAppContainer = () => {
   const AppStack = createStackNavigator(
     {
-      Main: {
-        screen: MainContainer,
-      },
       Help: {
         screen: NeedHelp,
       },
       Profile: {
         screen: Profile,
+      },
+      WaitList: {
+        screen: WaitList,
       },
       ListSwip: {
         screen: Swipeable,
@@ -137,7 +137,7 @@ const getAppContainer = () => {
     ) {
       return fromBottom(750);
     } else {
-      return fromLeft(750);
+      return fromBottom(500);
     }
   };
 

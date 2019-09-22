@@ -27,8 +27,23 @@ const Login = props => {
   }, [login]);
 
   return (
-    <Container style={{alignItems: 'center'}}>
+    <Container
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 120,
+      }}>
       <Content>
+        <Label
+          style={{
+            color: '#046bcc',
+            marginTop: 24,
+            fontSize: 24,
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}>
+          Mentee
+        </Label>
         <Form>
           <Item floatingLabel>
             <Label>Username</Label>
@@ -41,9 +56,10 @@ const Login = props => {
         </Form>
         <Button
           primary
+          color={'#046bcc'}
           style={{
             display: 'flex',
-            margin: 14,
+            margin: 24,
             justifyContent: 'center',
             width: 300,
           }}
