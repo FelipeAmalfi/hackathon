@@ -10,7 +10,9 @@ import Splash from '../Activities/Splash/Splash';
 
 import Profile from '../Fragments/Profile/Profile';
 import MainContainer from '../Activities/MainContainer';
+import Login from '../Activities/Login/Login';
 import NeedHelp from '../Fragments/Queue/NeedHelp';
+import Swipeable from '../components/Swipeable';
 
 export const RouteType = {
   MainNavigation: 1,
@@ -52,7 +54,7 @@ const getTabs = () => {
     },
     {
       header: 'none',
-      initialRouteName: 'NeedHelp',
+      initialRouteName: 'Profile',
       activeColor: '#fff',
       inactiveColor: '#031e80',
       barStyle: {backgroundColor: '#046bcc'},
@@ -67,16 +69,48 @@ const getAppContainer = () => {
       Main: {
         screen: MainContainer,
       },
+      Help: {
+        screen: NeedHelp,
+      },
+      Profile: {
+        screen: Profile,
+      },
+      ListSwip: {
+        screen: Swipeable,
+      },
     },
     {
-      initialRouteName: 'Main',
-
+      initialRouteName: 'Profile',
+      transparentCard: true,
+      headerMode: 'none',
+      mode: 'modal',
+      transitionConfig: () => ({
+        transitionSpec: {
+          duration: 0,
+        },
+      }),
+      cardStyle: {
+        opacity: 1.0,
+      },
       transitionConfig: nav => handleCustomTransition(nav),
+    },
+  );
+
+  const AuthStack = createStackNavigator(
+    {
+      Login: {
+        screen: Login,
+      },
+    },
+    {
+      header: 'none',
+      initialRouteName: 'Login',
     },
   );
 
   const scene = {
     Splash: {screen: Splash},
+    Login: AuthStack,
     App: AppStack,
   };
 

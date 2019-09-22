@@ -5,7 +5,7 @@ const Splash = props => {
   const {navigation} = props;
 
   useEffect(() => {
-    navigation.navigate('Main');
+    navigation.navigate('Login');
   }, [navigation]);
 
   return (

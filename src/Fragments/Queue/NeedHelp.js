@@ -15,12 +15,12 @@ const NeedHelp = () => {
 
   return (
     <Container>
-      <Header>
+      <Header onPress={() => console.log('clicou no item')}>
         <Text>Aonde você precisa de ajuda?</Text>
       </Header>
       <Content>
-        <Card>
-          <CardItem onPress={() => alert('CLICOU NESSA PORRA')}>
+        <Card onPress={() => console.log('clicou no item')}>
+          <CardItem>
             <Icon active name="logo-googleplus" />
             <Text>Google Plus</Text>
             <Right>

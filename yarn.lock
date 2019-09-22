@@ -6050,6 +6050,13 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
+rn-swipeable-panel@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/rn-swipeable-panel/-/rn-swipeable-panel-1.0.14.tgz#1cef7bfd6db8168e0efa1efffbf763bda6d02a12"
+  integrity sha512-3xl6bskd3At0wjotHrK2eCXAeoXcLc5i1NyiTV4SOgQ8cEMm9nnTYpN2b7UE12UTwzNkew085BnPUjHLtD1drQ==
+  dependencies:
+    prop-types "^15.7.2"
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"

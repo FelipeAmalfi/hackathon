@@ -6,13 +6,14 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {useSelector} from 'react-redux';
 import {StyleSheet} from 'react-native';
 
 const Profile = props => {
-  const photoLink = {
-    uri:
-      'https://scontent.fcgh8-1.fna.fbcdn.net/v/t1.0-9/16640952_1104706909638558_7931196132545005684_n.jpg?_nc_cat=108&_nc_oc=AQm_WOrIk8MBJpcieicGQow0J_y7qGa9g0s9wCwQrYmrwo25m4FhkmJMYdVSTu5b439fMcQd2u98TY-QJKOjw9aT&_nc_ht=scontent.fcgh8-1.fna&oh=2a9a28e5b8aefe54b5c7470d4b0fb061&oe=5DFCB2E3',
-  };
+  const {navigation} = props;
+  const login = useSelector(state => state.login);
+  const {userInfo} = login;
+  console.log(login);
 
   const photoCover = {
     uri: 'https://ak8.picdn.net/shutterstock/videos/31218658/thumb/1.jpg',
@@ -26,23 +27,28 @@ const Profile = props => {
   return (
     <ImageBackground
       source={photoCover}
-      blurRadius={2}
+      blurRadius={1}
       resizeMode="cover"
       style={styles.container}>
-      <Image source={photoLink} style={styles.imageContainer} />
-      <Text style={styles.name}>Felipe Amalfi Lima</Text>
-      <Text style={styles.email}>Call do Baron</Text>
+      <Image source={{uri: userInfo.photo}} style={styles.imageContainer} />
+      <Text style={styles.name}>{userInfo.name}</Text>
+      <Text style={styles.email}>{userInfo.team.name}</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('ListSwip')}>
+        <Text style={styles.memberButton}>Ver membros</Text>
+      </TouchableOpacity>
       <View backgroundColor={'rgba(240,242,245,0.6)'} style={styles.infoView}>
-        <Text style={styles.profession}>Mobile Engineer at BWG</Text>
-        <Text style={styles.email}>felip.amalf@gmail.com</Text>
+        <Text style={styles.profession}>{userInfo.position}</Text>
+        <Text style={styles.email}>{userInfo.login}</Text>
         <View style={styles.socialNetworkContainer}>
           <Image source={facebookIcon} style={styles.snIcon} />
           <Image source={twitterIcon} style={styles.snIcon} />
           <Image source={linkedinIcon} style={styles.snIcon} />
           <Image source={instagramIcon} style={styles.snIcon} />
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Ver membros do time</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Help')}>
+          <Text style={styles.buttonText}>Preciso de um mentor</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -80,6 +86,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     alignItems: 'center',
     fontSize: 20,
+  },
+  memberButton: {
+    marginTop: 8,
+    color: '#3232a8',
+    alignItems: 'center',
+    fontSize: 16,
   },
   profession: {
     marginTop: 14,
@@ -121,5 +133,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+Profile.navigationOptions = {
+  header: null,
+  headerLeft: null,
+};
 
 export default Profile;
